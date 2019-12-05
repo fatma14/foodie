@@ -18,10 +18,11 @@ router.post("/offers", (req, res, next) => {
 
 router.get("/offers", (req, res) => {
   const zip = req.params.zip;
+  const page = req.params.page || 0;
   Offer.find({ "provider.username": "ramy" })
-    .populate({ path: "provider", match: { username: "ramy" } })
-    // .populate("provider")
-    .limit(50)
+    .populate("provider")
+    .skip(page * 10)
+    .limit(10)
     .then(offer => {
       res.json(offer);
     });
