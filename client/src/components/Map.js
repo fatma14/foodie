@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
 
 mapboxgl.accessToken =
@@ -7,43 +7,82 @@ mapboxgl.accessToken =
 
 class Map extends Component {
   state = {
-    lng: 5,
-    lat: 34,
+    coordinates: [],
     zoom: 1.5
   };
 
   componentDidMount() {
-    const { lng, lat, zoom } = this.state;
+    const { coordinates, zoom } = this.state;
 
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/streets-v9",
-      center: [lng, lat],
+      center: [13.4, 52.52],
       zoom
     });
 
-    map.on("move", () => {
-      const { lng, lat } = map.getCenter();
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl,
+      placeholder: "Search"
+      // bbox: [
+      //   13.249066317660635,
+      //   52.41424490784732,
+      //   13.540030204072025,
+      //   52.5949388733805
+      // ],
+      // proximity: {
+      //   longitude: 13.4,
+      //   latitude: 52.52
+      // }
+    });
 
-      this.setState({
-        lng: lng.toFixed(4),
-        lat: lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
+    map.addControl(geocoder);
+    map.on("zoomend", () => {
+      const bounds = map.getBounds();
+      this.props.setBounds({
+        southWest: bounds._sw,
+        northEast: bounds._ne
+      });
+    });
+    map.on("load", () => {
+      map.addSource("single-point", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: []
+        }
+      });
+
+      geocoder.on("result", event => {
+        const resultGeocoder = map
+          .getSource("single-point")
+          .setData(event.result);
+
+        this.setState({
+          coordinates: [
+            resultGeocoder._data.center[0],
+            resultGeocoder._data.center[1]
+          ],
+          zoom: map.getZoom().toFixed(2)
+        });
       });
     });
   }
 
   render() {
-    const { lng, lat, zoom } = this.state;
+    const { coordinates, zoom } = this.state;
 
     return (
       <div>
-        <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
-          <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
-        </div>
         <div
           ref={el => (this.mapContainer = el)}
-          className="absolute top right left bottom"
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            width: "100%"
+          }}
         />
       </div>
     );
