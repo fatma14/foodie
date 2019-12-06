@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const searchOffers = bounds => {
-  axios
+  return axios
     .get(
       `/offers?swLat=${bounds.southWest.lat}&swLng=${bounds.southWest.lng}&neLat=${bounds.northEast.lat}&neLng=${bounds.northEast.lng}`
     )
@@ -13,4 +13,21 @@ const searchOffers = bounds => {
     });
 };
 
-export { searchOffers };
+const createOffer = (name, price, description, quantity, coordinates) => {
+  return axios
+    .post("/offers", {
+      name,
+      price,
+      description,
+      quantity,
+      coordinates
+    })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+};
+
+export { searchOffers, createOffer };

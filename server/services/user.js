@@ -18,13 +18,20 @@ function signup(username, password, address) {
   });
 }
 
-function createOffer({ name, description, price, quantity, address, userId }) {
+function createOffer({
+  name,
+  description,
+  price,
+  quantity,
+  coordinates,
+  userId
+}) {
   return Offer.create({
     name,
     description,
     price,
     quantity,
-    address,
+    coordinates,
     provider: userId
   });
 }

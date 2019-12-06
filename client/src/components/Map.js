@@ -66,6 +66,7 @@ class Map extends Component {
           ],
           zoom: map.getZoom().toFixed(2)
         });
+        console.warn(coordinates);
       });
     });
   }

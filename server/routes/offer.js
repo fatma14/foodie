@@ -17,9 +17,18 @@ router.post("/offers", (req, res, next) => {
 });
 
 router.get("/offers", (req, res) => {
-  const zip = req.params.zip;
+  const { swLat, swLng, neLat, neLng } = req.query;
   const page = req.params.page || 0;
-  Offer.find({ "provider.username": "ramy" })
+  Offer.find({
+    coordinates: {
+      $geoWithin: {
+        $box: [
+          [swLng, swLat],
+          [neLng, neLat]
+        ]
+      }
+    }
+  })
     .populate("provider")
     .skip(page * 10)
     .limit(10)

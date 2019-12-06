@@ -7,11 +7,7 @@ const offerSchema = new Schema({
   pictures: [String],
   description: String,
   quantity: String,
-  address: {
-    street: String,
-    city: String,
-    zip: Number
-  },
+  coordinates: [Number],
   provider: {
     type: Schema.Types.ObjectId,
     ref: "User"
