@@ -1,24 +1,37 @@
 import React, { Component } from "react";
-import Map from "./components/Map";
-import axios from "axios";
-import Signup from "./components/Signup";
+import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
-import { searchOffers } from "./components/services/offers";
+import CreateOffer from "./components/CreateOffer";
 import "./App.css";
+import OfferDetails from "./components/OfferDetails";
+import SearchOffers from "./components/SearchOffers";
+import Home from "./components/Home";
 
 export default class App extends Component {
-  setBounds(bounds) {
-    searchOffers(bounds);
-  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Map
+          <Switch>
+            <Route
+              exact
+              path="/offer/create"
+              render={props => <CreateOffer {...props} />}
+            />
+            <Route exact path="/offer/search" component={SearchOffers} />
+            <Route exact path="/offer/:id" component={OfferDetails} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+
+          {/* <Map
             setBounds={bounds => {
               this.setBounds(bounds);
             }}
-          />
+            setCoordinates={coordinates => {
+              this.setCoordinates(coordinates);
+            }}
+          /> */}
         </header>
       </div>
     );

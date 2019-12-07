@@ -24,7 +24,7 @@ export default class Login extends Component {
           error: data.message
         });
       } else {
-        this.props.history.push("/projects");
+        this.props.history.push("/offers/search");
       }
     });
   };

@@ -7,18 +7,17 @@ mapboxgl.accessToken =
 
 class Map extends Component {
   state = {
-    coordinates: [],
     zoom: 1.5
   };
+  map = undefined;
 
   componentDidMount() {
-    const { coordinates, zoom } = this.state;
+    const zoom = this.state;
 
-    const map = new mapboxgl.Map({
+    this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/streets-v9",
-      center: [13.4, 52.52],
-      zoom
+      center: [13.4, 52.52]
     });
 
     const geocoder = new MapboxGeocoder({
@@ -37,16 +36,18 @@ class Map extends Component {
       // }
     });
 
-    map.addControl(geocoder);
-    map.on("zoomend", () => {
-      const bounds = map.getBounds();
-      this.props.setBounds({
-        southWest: bounds._sw,
-        northEast: bounds._ne
-      });
+    this.map.addControl(geocoder);
+    this.map.on("zoomend", () => {
+      const bounds = this.map.getBounds();
+      if (this.props.setBounds) {
+        this.props.setBounds({
+          southWest: bounds._sw,
+          northEast: bounds._ne
+        });
+      }
     });
-    map.on("load", () => {
-      map.addSource("single-point", {
+    this.map.on("load", () => {
+      this.map.addSource("single-point", {
         type: "geojson",
         data: {
           type: "FeatureCollection",
@@ -55,33 +56,39 @@ class Map extends Component {
       });
 
       geocoder.on("result", event => {
-        const resultGeocoder = map
+        const resultGeocoder = this.map
           .getSource("single-point")
           .setData(event.result);
+        const coordinates = [
+          resultGeocoder._data.center[0],
+          resultGeocoder._data.center[1]
+        ];
+        if (this.props.setCoordinates) {
+          this.props.setCoordinates(coordinates);
+        }
 
-        this.setState({
-          coordinates: [
-            resultGeocoder._data.center[0],
-            resultGeocoder._data.center[1]
-          ],
-          zoom: map.getZoom().toFixed(2)
-        });
-        console.warn(coordinates);
+        // this.setState({
+        //   //   coordinates: [
+        //   //     resultGeocoder._data.center[0],
+        //   //     resultGeocoder._data.center[1]
+        //   //   ],
+        //   zoom: map.getZoom().toFixed(2)
+        // });
       });
     });
   }
 
   render() {
-    const { coordinates, zoom } = this.state;
-
+    if (this.map) {
+      this.props.offers.forEach(offer => {
+        new mapboxgl.Marker().setLngLat(offer.coordinates).addTo(this.map);
+      });
+    }
     return (
       <div>
         <div
           ref={el => (this.mapContainer = el)}
           style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
             width: "100%"
           }}
         />

@@ -3,7 +3,7 @@ import axios from "axios";
 const searchOffers = bounds => {
   return axios
     .get(
-      `/offers?swLat=${bounds.southWest.lat}&swLng=${bounds.southWest.lng}&neLat=${bounds.northEast.lat}&neLng=${bounds.northEast.lng}`
+      `/api/offers?swLat=${bounds.southWest.lat}&swLng=${bounds.southWest.lng}&neLat=${bounds.northEast.lat}&neLng=${bounds.northEast.lng}`
     )
     .then(response => {
       return response.data;
@@ -15,7 +15,7 @@ const searchOffers = bounds => {
 
 const createOffer = (name, price, description, quantity, coordinates) => {
   return axios
-    .post("/offers", {
+    .post("http:/api/offers", {
       name,
       price,
       description,
@@ -28,6 +28,10 @@ const createOffer = (name, price, description, quantity, coordinates) => {
     .catch(err => {
       return err.response.data;
     });
+};
+
+const deleteOffer = id => {
+  return axios.delete(`api/offers/${id}`);
 };
 
 export { searchOffers, createOffer };
