@@ -51,4 +51,8 @@ router.delete("/logout", (req, res) => {
   res.json({ message: "Successful logout" });
 });
 
+router.get("/loggedin", (req, res) => {
+  res.json(req.user);
+});
+
 module.exports = router;

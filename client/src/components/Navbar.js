@@ -1,16 +1,42 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar as Nav } from "react-bootstrap";
+import { logout } from "./services/auth";
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <Nav className="nav justify-content-end" bg="light">
+const Navbar = props => {
+  const handleLogout = () => {
+    logout();
+    props.clearUser(null);
+  };
+  return (
+    <Nav className="nav justify-content-end mt-2 ml-2 mr-2">
+      {props.user ? (
+        <>
+          <Link to="/">Welcome {props.user.username}</Link>
+          <Link to="/" onClick={handleLogout}>
+            Logout
+          </Link>
+        </>
+      ) : (
         <React.Fragment>
-          <Link to="//signup">Signup</Link>
-          <Link to="/login">Login</Link>
+          <div className="mr-3">
+            <Link
+              style={{ color: "white", fontWeight: "bold" }}
+              to="/offers/search"
+            >
+              {" "}
+              Offers
+            </Link>
+          </div>
+          <div className="mr-5 ml-5">
+            <Link style={{ color: "white", fontWeight: "bold" }} to="/login">
+              Login
+            </Link>
+          </div>
         </React.Fragment>
-      </Nav>
-    );
-  }
-}
+      )}
+    </Nav>
+  );
+};
+
+export default Navbar;

@@ -1,0 +1,15 @@
+.background {
+  background-image: url(../images/foodie.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.signup-form {
+  padding-bottom: 30px;
+  margin-left: 250px;
+}
+
+.nav-bar {
+  padding-top: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}

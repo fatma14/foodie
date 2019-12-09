@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
+import Popup from "./Popup";
+import ReactDOMServer from "react-dom/server";
+import { Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZmF0bWExNCIsImEiOiJjazNzbDVwcGYwN24xM2hvNG5ncDlmNDBqIn0.lUgBAvFq5lq9DHoVrK032A";
@@ -9,6 +13,7 @@ class Map extends Component {
   state = {
     zoom: 1.5
   };
+
   map = undefined;
 
   componentDidMount() {
@@ -81,7 +86,13 @@ class Map extends Component {
   render() {
     if (this.map) {
       this.props.offers.forEach(offer => {
-        new mapboxgl.Marker().setLngLat(offer.coordinates).addTo(this.map);
+        let popup = new mapboxgl.Popup().setHTML(
+          ReactDOMServer.renderToStaticMarkup(<Popup offers={offer} />)
+        );
+        new mapboxgl.Marker()
+          .setLngLat(offer.coordinates)
+          .setPopup(popup)
+          .addTo(this.map);
       });
     }
     return (
