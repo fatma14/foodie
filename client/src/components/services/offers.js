@@ -19,22 +19,33 @@ const createOffer = (
   description,
   quantity,
   coordinates,
-  tagline
+  tagline,
+  files
 ) => {
-  return axios
-    .post("http:/api/offers", {
-      name,
-      price,
-      description,
-      quantity,
-      coordinates,
-      tagline
+  const promises = [];
+  for (let i = 0; i < files.length; i++) {
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", files[i]);
+    promises.push(handleUpload(uploadData));
+  }
+  return Promise.all(promises)
+    .then(response => {
+      const imageUrls = response.map(value => value.secure_url);
+      return axios.post("http:/api/offers", {
+        name,
+        price,
+        description,
+        quantity,
+        coordinates,
+        tagline,
+        imageUrls
+      });
     })
     .then(response => {
       return response.data;
     })
     .catch(err => {
-      return err.response.data;
+      throw err;
     });
 };
 
@@ -53,4 +64,8 @@ const getOfferDetails = id => {
     });
 };
 
-export { searchOffers, createOffer, getOfferDetails };
+const handleUpload = theFile => {
+  return axios.post("/api/upload", theFile).then(response => response.data);
+};
+
+export { searchOffers, createOffer, getOfferDetails, handleUpload };

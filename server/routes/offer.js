@@ -12,7 +12,7 @@ router.post("/offers", (req, res, next) => {
       res.json(newOffer);
     })
     .catch(err => {
-      res.json(err);
+      res.status(500).json(err);
     });
 });
 
