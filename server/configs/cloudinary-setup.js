@@ -14,7 +14,7 @@ const storage = cloudinaryStorage({
   allowedFormats: ["jpg", "png"],
 
   filename: function(req, res, cb) {
-    console.log(res);
+    console.log(res, process.env.cloudName);
     cb(null, res.originalname);
   }
 });

@@ -7,8 +7,22 @@ const uploadFileRouter = require("./routes/file-upload");
 const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 require("./configs/passport");
+
+const MongoStore = require("connect-mongo")(session);
+
+app.use(
+  session({
+    secret: "basic-auth-secret",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
+);
 
 app.use(
   cors({
@@ -26,4 +40,7 @@ app.use("/api/auth", authRouter);
 app.use("/api", offerRouter);
 app.use("/api", uploadFileRouter);
 
+app.use((error, req, res, next) => {
+  console.log(error);
+});
 module.exports = app;
