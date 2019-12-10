@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const authRouter = require("./routes/auth");
 const offerRouter = require("./routes/offer");
+const uploadFileRouter = require("./routes/file-upload");
 const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
@@ -23,5 +24,6 @@ app.use(passport.session());
 
 app.use("/api/auth", authRouter);
 app.use("/api", offerRouter);
+app.use("/api", uploadFileRouter);
 
 module.exports = app;

@@ -9,6 +9,7 @@ const offerSchema = new Schema({
   quantity: String,
   tagline: String,
   coordinates: [Number],
+  imageUrl: { type: String, required: true },
   provider: {
     type: Schema.Types.ObjectId,
     ref: "User"

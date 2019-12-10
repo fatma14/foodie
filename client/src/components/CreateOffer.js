@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createOffer } from "./services/offers";
 import { Form, Button } from "react-bootstrap";
 import Map from "./Map";
+import axios from "axios";
 
 export default class Offer extends Component {
   state = {
@@ -22,6 +23,18 @@ export default class Offer extends Component {
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
+    });
+  };
+
+  onImageUpload = event => {
+    const [files] = event.target.files;
+    console.log("file to be uploaded is", files);
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", files);
+    axios.post("/api/upload", uploadData).then(response => {
+      console.log("Hey Now", response);
+      // const urlPath = response.data.secure_url;
+      // setUrlPath(urlPath);
     });
   };
 
@@ -95,6 +108,16 @@ export default class Offer extends Component {
               id="tagline"
               value={this.state.tagline}
               onChange={this.handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label htmlFor="file">upload file </Form.Label>
+            <Form.Control
+              type="file"
+              name="urlPath"
+              id="urlPath"
+              onChange={this.onImageUpload}
             />
           </Form.Group>
 

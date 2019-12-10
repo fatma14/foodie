@@ -19,6 +19,10 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
-server.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
-});
+server
+  .listen(process.env.PORT, () => {
+    console.log(`Listening on http://localhost:${process.env.PORT}`);
+  })
+  .on("error", e => {
+    console.log(1, e);
+  });

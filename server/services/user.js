@@ -34,6 +34,7 @@ function createOffer({
     quantity,
     coordinates,
     tagline,
+    imageUrl,
     provider: userId
   });
 }
