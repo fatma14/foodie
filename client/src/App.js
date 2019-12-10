@@ -6,15 +6,25 @@ import "./App.css";
 import OfferDetails from "./components/OfferDetails";
 import SearchOffers from "./components/SearchOffers";
 import Home from "./components/Home";
+import { searchOffers } from "./components/services/offers";
 
 export default class App extends Component {
   state = {
-    user: this.props.user
+    user: this.props.user,
+    offers: []
   };
 
   setUser = user => {
     this.setState({
       user: user
+    });
+  };
+
+  setBounds = bounds => {
+    searchOffers(bounds).then(offers => {
+      this.setState({
+        offers: offers
+      });
     });
   };
 
@@ -38,8 +48,6 @@ export default class App extends Component {
               exact
               path="/offer/create"
               render={props => {
-                console.warn("test", this.state);
-
                 if (this.state.user) {
                   return <CreateOffer {...props} />;
                 } else {
@@ -47,8 +55,29 @@ export default class App extends Component {
                 }
               }}
             />
-            <Route exact path="/offers/search" component={SearchOffers} />
-            <Route exact path="/offer/:id" component={OfferDetails} />
+            <Route
+              exact
+              path="/offers/search"
+              render={props => {
+                return (
+                  <SearchOffers
+                    offers={this.state.offers}
+                    setBounds={this.setBounds}
+                    {...props}
+                  />
+                );
+              }}
+            />
+
+            {/* <Route exact path="/offers/search" component={SearchOffers} /> */}
+
+            <Route
+              exact
+              path="/offer/:id"
+              render={props => {
+                return <OfferDetails offers={this.state.offers} {...props} />;
+              }}
+            />
             <Route
               exact
               path="/login"

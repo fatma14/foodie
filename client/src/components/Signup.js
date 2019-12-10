@@ -75,6 +75,7 @@ export default class Signup extends Component {
                   placeholder="1234 Main St"
                 />
               </Form.Group>
+
               {this.state.error && (
                 <Alert variant="danger">{this.state.error}</Alert>
               )}

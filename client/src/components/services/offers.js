@@ -13,14 +13,22 @@ const searchOffers = bounds => {
     });
 };
 
-const createOffer = (name, price, description, quantity, coordinates) => {
+const createOffer = (
+  name,
+  price,
+  description,
+  quantity,
+  coordinates,
+  tagline
+) => {
   return axios
     .post("http:/api/offers", {
       name,
       price,
       description,
       quantity,
-      coordinates
+      coordinates,
+      tagline
     })
     .then(response => {
       return response.data;
@@ -31,7 +39,18 @@ const createOffer = (name, price, description, quantity, coordinates) => {
 };
 
 const deleteOffer = id => {
-  return axios.delete(`api/offers/${id}`);
+  return axios.delete(`/api/offers/${id}`);
 };
 
-export { searchOffers, createOffer };
+const getOfferDetails = id => {
+  return axios
+    .get(`/api/offers/${id}`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+};
+
+export { searchOffers, createOffer, getOfferDetails };

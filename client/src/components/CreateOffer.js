@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createOffer } from "./services/offers";
-import { Alert, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import Map from "./Map";
 
 export default class Offer extends Component {
@@ -9,6 +9,7 @@ export default class Offer extends Component {
     price: "",
     quantity: "",
     description: "",
+    tagline: "",
     coordinates: []
   };
 
@@ -32,7 +33,8 @@ export default class Offer extends Component {
       this.state.price,
       this.state.description,
       this.state.quantity,
-      this.state.coordinates
+      this.state.coordinates,
+      this.state.tagline
     );
   };
 
@@ -84,11 +86,20 @@ export default class Offer extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
+
+          <Form.Group>
+            <Form.Label htmlFor="description">Tagline: </Form.Label>
+            <Form.Control
+              type="text"
+              name="tagline"
+              id="tagline"
+              value={this.state.tagline}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+
           <Button type="submit">Create</Button>
           <Map
-            // setBounds={bounds => {
-            //   this.setBounds(bounds);
-            // }}
             setCoordinates={coordinates => {
               this.setCoordinates(coordinates);
             }}

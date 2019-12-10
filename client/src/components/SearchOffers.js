@@ -1,27 +1,19 @@
 import React, { Component } from "react";
-import { searchOffers } from "./services/offers";
 import Map from "./Map";
+import OffersInfo from "./OffersInfo";
 
 export default class SearchOffers extends Component {
-  state = {
-    offers: []
-  };
-
-  setBounds = bounds => {
-    searchOffers(bounds).then(offers => {
-      this.setState({
-        offers: offers
-      });
-    });
-  };
-
   render() {
+    const matchingOffers = this.props.offers.map(offer => {
+      return <OffersInfo offer={offer} {...this.props} />;
+    });
     return (
       <div>
+        <div>{matchingOffers}</div>
         <Map
-          offers={this.state.offers}
+          offers={this.props.offers}
           setBounds={bounds => {
-            this.setBounds(bounds);
+            this.props.setBounds(bounds);
           }}
         />
       </div>

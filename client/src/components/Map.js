@@ -5,6 +5,7 @@ import Popup from "./Popup";
 import ReactDOMServer from "react-dom/server";
 import { Link } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
+import "./Map.css";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZmF0bWExNCIsImEiOiJjazNzbDVwcGYwN24xM2hvNG5ncDlmNDBqIn0.lUgBAvFq5lq9DHoVrK032A";
@@ -84,7 +85,7 @@ class Map extends Component {
   }
 
   render() {
-    if (this.map) {
+    if (this.map && this.props.offers) {
       this.props.offers.forEach(offer => {
         let popup = new mapboxgl.Popup().setHTML(
           ReactDOMServer.renderToStaticMarkup(<Popup offers={offer} />)
@@ -98,10 +99,11 @@ class Map extends Component {
     return (
       <div>
         <div
+          className="map-container"
           ref={el => (this.mapContainer = el)}
-          style={{
-            width: "100%"
-          }}
+          // style={{
+          //   width: "100%"
+          // }}
         />
       </div>
     );

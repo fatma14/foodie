@@ -24,6 +24,7 @@ function createOffer({
   price,
   quantity,
   coordinates,
+  tagline,
   userId
 }) {
   return Offer.create({
@@ -32,6 +33,7 @@ function createOffer({
     price,
     quantity,
     coordinates,
+    tagline,
     provider: userId
   });
 }

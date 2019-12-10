@@ -7,6 +7,7 @@ const offerSchema = new Schema({
   pictures: [String],
   description: String,
   quantity: String,
+  tagline: String,
   coordinates: [Number],
   provider: {
     type: Schema.Types.ObjectId,
