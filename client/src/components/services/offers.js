@@ -68,4 +68,13 @@ const handleUpload = theFile => {
   return axios.post("/api/upload", theFile).then(response => response.data);
 };
 
-export { searchOffers, createOffer, getOfferDetails, handleUpload };
+const createOrder = (offerId, userId) => {
+  return axios.post("/api/orders", { offerId, userId });
+};
+export {
+  searchOffers,
+  createOffer,
+  getOfferDetails,
+  handleUpload,
+  createOrder
+};

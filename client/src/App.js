@@ -15,6 +15,8 @@ export default class App extends Component {
   };
 
   setUser = user => {
+    console.warn("setUser App", user);
+
     this.setState({
       user: user
     });
@@ -73,7 +75,13 @@ export default class App extends Component {
               exact
               path="/offer/:id"
               render={props => {
-                return <OfferDetails offers={this.state.offers} {...props} />;
+                return (
+                  <OfferDetails
+                    offers={this.state.offers}
+                    user={this.state.user}
+                    {...props}
+                  />
+                );
               }}
             />
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import qs from "qs";
 import { login } from "./services/auth";
 import { Alert, Form, Card } from "react-bootstrap";
 import "./Login.css";
@@ -25,14 +26,22 @@ export default class Login extends Component {
           error: data.message
         });
       } else {
-        console.warn(this.props.history);
         this.props.setUser(data);
-        this.props.history.push("/offer/create");
+        if (this.props.location.search) {
+          const paramsString = decodeURIComponent(
+            this.props.location.search.split("?")[1]
+          );
+          const { redirectTo } = qs.parse(paramsString);
+          this.props.history.push(redirectTo);
+        } else {
+          this.props.history.push("/offer/create");
+        }
       }
     });
   };
 
   render() {
+    console.warn(this.props);
     return (
       <div className="login-background">
         <div className="login-form">

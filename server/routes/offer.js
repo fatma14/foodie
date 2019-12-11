@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const userService = require("../services/user");
 const Offer = require("../models/Offer");
+const Order = require("../models/Order");
 const isAuthenticated = require("../middlewares/authorizations");
 
 router.post("/offers", (req, res, next) => {
@@ -47,10 +48,12 @@ router.get("/offers/:id", (req, res) => {
 
   Offer.findById(req.params.id)
     .then(offerDetails => {
-      res.json(offerDetails);
+      return Order.find({ offer: offerDetails._id }).then(orders => {
+        res.json({ offerDetails, orders });
+      });
     })
-    .catch(err => {
-      res.json(err);
+    .catch(error => {
+      res.status(500).json({ error });
     });
 });
 
