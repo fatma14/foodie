@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Map from "./Map";
 import OffersInfo from "./OffersInfo";
+import "./searchOffers.css";
 
 export default class SearchOffers extends Component {
   render() {
@@ -8,8 +9,8 @@ export default class SearchOffers extends Component {
       return <OffersInfo offer={offer} {...this.props} />;
     });
     return (
-      <div>
-        <div>{matchingOffers}</div>
+      <div className="search-offers">
+        <div className="offers-list">{matchingOffers}</div>
         <Map
           offers={this.props.offers}
           setBounds={bounds => {

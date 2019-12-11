@@ -67,7 +67,7 @@ export default class Offer extends Component {
 
   render() {
     return (
-      <>
+      <div className="create-offer">
         <div className="create-offer-from">
           <Card
             className="ml-3"
@@ -158,7 +158,7 @@ export default class Offer extends Component {
             this.setCoordinates(coordinates);
           }}
         />
-      </>
+      </div>
     );
   }
 }

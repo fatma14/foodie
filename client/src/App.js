@@ -7,6 +7,7 @@ import OfferDetails from "./components/OfferDetails";
 import SearchOffers from "./components/SearchOffers";
 import Home from "./components/Home";
 import { searchOffers } from "./components/services/offers";
+import Navbar from "./components/Navbar";
 
 export default class App extends Component {
   state = {
@@ -35,13 +36,16 @@ export default class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <div className="nav-bar">
+            <Navbar user={this.state.user} clearUser={this.props.setUser} />
+          </div>
           <Switch>
             <Route
               exact
               path="/"
               render={props => (
                 <Home
-                  user={this.state.props}
+                  user={this.state.user}
                   setUser={this.setUser}
                   {...props}
                 />

@@ -1,3 +1,8 @@
+.create-offer {
+  display: flex;
+  height: 100%;
+}
+
 .create-offer-button {
   background-color: salmon;
   border-radius: 10px;
@@ -14,4 +19,8 @@
   width: 50%;
   justify-content: center;
   align-items: center;
+}
+
+.create-offer .map {
+  width: 50%;
 }

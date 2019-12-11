@@ -97,7 +97,7 @@ class Map extends Component {
       });
     }
     return (
-      <div>
+      <div className="map">
         <div
           className="map-container"
           ref={el => (this.mapContainer = el)}

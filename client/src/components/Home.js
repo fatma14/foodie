@@ -7,9 +7,9 @@ export default class Home extends Component {
     return (
       <div style={{ height: "100%" }}>
         <div className="background">
-          <div className="nav-bar">
+          {/* <div className="nav-bar">
             <Navbar user={this.props.user} clearUser={this.props.setUser} />
-          </div>
+          </div> */}
           <div className="signup-form">
             <Signup setUser={this.props.setUser} history={this.props.history} />
           </div>

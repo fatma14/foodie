@@ -1,0 +1,13 @@
+.search-offers {
+  display: flex;
+  height: 100%;
+}
+
+.search-offers .offers-list {
+  width: 50%;
+}
+
+.search-offers .map {
+  height: 100%;
+  width: 50%;
+}

@@ -23,3 +23,8 @@
 .mapboxgl-map {
   overflow: inherit;
 }
+
+.nav-bar {
+  padding-top: 5px;
+  background-color: rgba(245, 127, 114, 0.5);
+}

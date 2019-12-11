@@ -4,6 +4,7 @@ import { Navbar as Nav } from "react-bootstrap";
 import { logout } from "./services/auth";
 
 const Navbar = props => {
+  console.warn("test", props);
   const handleLogout = () => {
     logout();
     props.clearUser(null);
@@ -13,7 +14,11 @@ const Navbar = props => {
       {props.user ? (
         <>
           <Link to="/">Welcome {props.user.username}</Link>
-          <Link to="/" onClick={handleLogout}>
+          <Link
+            style={{ color: "white", fontWeight: "bold" }}
+            to="/"
+            onClick={handleLogout}
+          >
             Logout
           </Link>
         </>
