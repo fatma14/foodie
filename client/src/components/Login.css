@@ -11,6 +11,13 @@
 .login-form {
   display: flex;
   height: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-left: 20px;
+}
+.login-background {
+  background-image: url("../images/vegies.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
 }

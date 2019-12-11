@@ -69,9 +69,6 @@ export default class App extends Component {
                 );
               }}
             />
-
-            {/* <Route exact path="/offers/search" component={SearchOffers} /> */}
-
             <Route
               exact
               path="/offer/:id"
@@ -79,6 +76,7 @@ export default class App extends Component {
                 return <OfferDetails offers={this.state.offers} {...props} />;
               }}
             />
+
             <Route
               exact
               path="/login"

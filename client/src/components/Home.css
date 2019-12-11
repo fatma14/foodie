@@ -2,11 +2,16 @@
   background-image: url(../images/foodie.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
 }
 
 .signup-form {
-  padding-bottom: 30px;
-  margin-left: 250px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-left: 30px;
 }
 
 .nav-bar {

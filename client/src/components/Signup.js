@@ -37,12 +37,12 @@ export default class Signup extends Component {
         <Card
           className="mt-5"
           bg="light"
-          style={{ width: "25rem", height: "25rem", fontSize: "20px" }}
+          style={{ width: "30rem", height: "35rem", fontSize: "20px" }}
         >
-          <Card.Header>Create account</Card.Header>
+          <Card.Header>Create an account</Card.Header>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Row>
+              <Form.Row className="mt-2 mb-2">
                 <Form.Group as={Col}>
                   <Form.Label htmlFor="username">Username </Form.Label>
                   <Form.Control
@@ -64,7 +64,7 @@ export default class Signup extends Component {
                   />
                 </Form.Group>
               </Form.Row>
-              <Form.Group controlId="formGridAddress1">
+              <Form.Group className="mt-3" controlId="formGridAddress1">
                 <Form.Label htmlFor="address">Address</Form.Label>
                 <Form.Control
                   type="address"

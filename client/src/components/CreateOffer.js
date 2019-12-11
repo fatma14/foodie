@@ -35,17 +35,6 @@ export default class Offer extends Component {
     const files = event.target.files;
     console.log("file to be uploaded is", files);
     this.setState({ files });
-
-    // const uploadData = new FormData();
-    // uploadData.append("imageUrl", files);
-    // this.setState({ uploadOn: true });
-    // return handleUpload(uploadData)
-    //   .then(response => {
-    //     this.setState({ imageUrl: response.secure_url, uploadOn: false });
-    //   })
-    //   .catch(err => {
-    //     console.log("Error while uploading the file: ", err);
-    //   });
   };
 
   handleSubmit = event => {
@@ -64,7 +53,9 @@ export default class Offer extends Component {
       this.state.files
     )
       .then(response => {
+        console.log(response);
         this.setState({ isLoading: false });
+        this.props.history.push(`/offer/${response._id}`);
       })
       .catch(error => {
         this.setState({

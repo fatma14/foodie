@@ -5,7 +5,7 @@ import "./Home.css";
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      <div style={{ height: "100%" }}>
         <div className="background">
           <div className="nav-bar">
             <Navbar user={this.props.user} clearUser={this.props.setUser} />

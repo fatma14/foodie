@@ -34,44 +34,46 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="login-form">
-        <div>
-          <Card
-            bg="light"
-            style={{ width: "25rem", height: "25rem", fontSize: "20px" }}
-          >
-            <Card.Header>Login</Card.Header>
-            <Card.Body>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                  <Form.Label htmlFor="username">Username </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="username"
-                    id="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label htmlFor="password">Password </Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                {this.state.error && (
-                  <Alert variant="danger">{this.state.error}</Alert>
-                )}
-                <button className="login-button" type="submit">
-                  Log in
-                </button>
-              </Form>
-            </Card.Body>
-          </Card>
+      <div className="login-background">
+        <div className="login-form">
+          <div>
+            <Card
+              bg="light"
+              style={{ width: "30rem", height: "30rem", fontSize: "20px" }}
+            >
+              <Card.Header>Login</Card.Header>
+              <Card.Body>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Group>
+                    <Form.Label htmlFor="username">Username </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="username"
+                      id="username"
+                      value={this.state.username}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label htmlFor="password">Password </Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      id="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  {this.state.error && (
+                    <Alert variant="danger">{this.state.error}</Alert>
+                  )}
+                  <button className="login-button" type="submit">
+                    Log in
+                  </button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
     );

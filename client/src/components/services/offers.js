@@ -20,12 +20,12 @@ const createOffer = (
   quantity,
   coordinates,
   tagline,
-  files
+  imageUrls
 ) => {
   const promises = [];
-  for (let i = 0; i < files.length; i++) {
+  for (let i = 0; i < imageUrls.length; i++) {
     const uploadData = new FormData();
-    uploadData.append("imageUrl", files[i]);
+    uploadData.append("imageUrl", imageUrls[i]);
     promises.push(handleUpload(uploadData));
   }
   return Promise.all(promises)
