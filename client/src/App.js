@@ -37,7 +37,7 @@ export default class App extends Component {
       <div className="App">
         <div className="App-header">
           <div className="nav-bar">
-            <Navbar user={this.state.user} clearUser={this.props.setUser} />
+            <Navbar user={this.state.user} clearUser={this.setUser} />
           </div>
           <Switch>
             <Route

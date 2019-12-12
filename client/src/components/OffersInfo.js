@@ -10,12 +10,14 @@ export default class OffersInfo extends Component {
   render() {
     return (
       <div className="offers-info mt-3 ml-3">
-        <Card style={{ width: "18rem", borderBottomColor: "grey" }}>
-          {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+        <Card style={{ width: "30rem", borderBottomColor: "grey" }}>
+          <Card.Img variant="top" src={this.props.offer.imageUrls[0]} />
           <Card.Body>
             <Card.Title>{this.props.offer.name}</Card.Title>
             <Card.Text> Quantity: {this.props.offer.quantity} </Card.Text>
-            <Card.Text> {this.props.offer.tagline} </Card.Text>
+            <footer className="blockquote-footer mt-2">
+              {this.props.offer.tagline}
+            </footer>
             <button onClick={this.handleClick} className="offer-details-button">
               Offer details
             </button>

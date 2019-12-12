@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "./services/auth";
 import "./Signup.css";
-import { Alert, Form, Col, Card } from "react-bootstrap";
+import { Alert, Form, Col, Card, Button } from "react-bootstrap";
 export default class Signup extends Component {
   state = {
     username: "",
@@ -35,17 +35,23 @@ export default class Signup extends Component {
     return (
       <div>
         <Card
-          className="mt-5"
-          bg="light"
-          style={{ width: "30rem", height: "35rem", fontSize: "20px" }}
+          style={{
+            width: "25rem",
+            height: "30rem",
+            fontSize: "20px",
+            borderRadius: "1rem"
+          }}
         >
-          <Card.Header>Create an account</Card.Header>
+          <Card.Header style={{ fontWeight: "bold" }}>
+            Create an account
+          </Card.Header>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
               <Form.Row className="mt-2 mb-2">
                 <Form.Group as={Col}>
                   <Form.Label htmlFor="username">Username </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="text"
                     name="username"
                     id="username"
@@ -56,6 +62,7 @@ export default class Signup extends Component {
                 <Form.Group as={Col}>
                   <Form.Label htmlFor="password">Password </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="password"
                     name="password"
                     id="password"
@@ -67,6 +74,7 @@ export default class Signup extends Component {
               <Form.Group className="mt-3" controlId="formGridAddress1">
                 <Form.Label htmlFor="address">Address</Form.Label>
                 <Form.Control
+                  style={{ borderRadius: "1rem" }}
                   type="address"
                   name="address"
                   id="address"
@@ -80,9 +88,14 @@ export default class Signup extends Component {
                 <Alert variant="danger">{this.state.error}</Alert>
               )}
 
-              <button className="signup-button" type="submit">
+              <Button
+                style={{ borderRadius: "1rem", border: "2px solid" }}
+                variant="outline-success"
+                className="signup-button"
+                type="submit"
+              >
                 Submit
-              </button>
+              </Button>
             </Form>
             <footer className="blockquote-footer mt-2">
               Already have an account? <Link to="/login">Login</Link>

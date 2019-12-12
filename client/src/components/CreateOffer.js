@@ -53,7 +53,6 @@ export default class Offer extends Component {
       this.state.files
     )
       .then(response => {
-        console.log(response);
         this.setState({ isLoading: false });
         this.props.history.push(`/offer/${response._id}`);
       })

@@ -46,7 +46,6 @@ export default class OfferDetails extends Component {
   }
 
   render() {
-    console.warn("offerDetails", this.props);
     let carousel = [];
     if (this.state.files) {
       carousel = this.state.files.map(imageUrl => {
