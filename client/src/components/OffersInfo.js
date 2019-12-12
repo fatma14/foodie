@@ -12,7 +12,7 @@ export default class OffersInfo extends Component {
       <div className="offers-info mt-3 ml-3">
         <Card
           style={{
-            width: "30rem",
+            width: "25rem",
             fontSize: "20px"
           }}
         >

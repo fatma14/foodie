@@ -7,7 +7,16 @@
   width: 50%;
 }
 
+.search-offers .offers-list .list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .search-offers .map {
+  height: 100%;
+}
+
+.search-offers-map-container {
   height: 100%;
   width: 50%;
 }
