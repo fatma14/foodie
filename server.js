@@ -7,7 +7,7 @@ const app = require("./app");
 let server = http.createServer(app);
 
 mongoose
-  .connect("mongodb://localhost/foodie" || process.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/foodie", {
     useNewUrlParser: true
   })
   .then(x => {
