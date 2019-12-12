@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.01605207.chunk.css",
+    "main.js": "/static/js/main.7edad4b9.chunk.js",
+    "main.js.map": "/static/js/main.7edad4b9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8eac158a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8eac158a.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.f5198ca9.chunk.js": "/static/js/2.f5198ca9.chunk.js",
+    "static/js/2.f5198ca9.chunk.js.map": "/static/js/2.f5198ca9.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.44f4b6ee76c6468ec08b0a758fb00c0f.js": "/precache-manifest.44f4b6ee76c6468ec08b0a758fb00c0f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.01605207.chunk.css.map": "/static/css/main.01605207.chunk.css.map",
+    "static/media/icon.webp": "/static/media/icon.c53139b5.webp",
+    "static/media/reservation.webp": "/static/media/reservation.4674720b.webp",
+    "static/media/search.webp": "/static/media/search.a983b0c5.webp",
+    "static/media/Home.css": "/static/media/spices.d09280ed.jpeg",
+    "static/media/Login.css": "/static/media/vegies.ee4c9d97.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8eac158a.js",
+    "static/css/2.17e5ed98.chunk.css",
+    "static/js/2.f5198ca9.chunk.js",
+    "static/css/main.01605207.chunk.css",
+    "static/js/main.7edad4b9.chunk.js"
+  ]
+}
