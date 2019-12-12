@@ -31,7 +31,7 @@ const createOffer = (
   return Promise.all(promises)
     .then(response => {
       const imageUrls = response.map(value => value.secure_url);
-      return axios.post("/api/offers", {
+      return axios.post("https:/api/offers", {
         name,
         price,
         description,
