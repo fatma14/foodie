@@ -20,7 +20,11 @@ const Navbar = props => {
             variant="outline-success"
           >
             <Link
-              style={{ color: "black", fontWeight: "bold" }}
+              style={{
+                color: "black",
+                fontWeight: "bold",
+                textDecoration: "none"
+              }}
               to="/"
               onClick={handleLogout}
             >
@@ -33,7 +37,11 @@ const Navbar = props => {
               variant="outline-success"
             >
               <Link
-                style={{ color: "black", fontWeight: "bold" }}
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textDecoration: "none"
+                }}
                 to="/offers/search"
               >
                 Offers
@@ -49,7 +57,11 @@ const Navbar = props => {
               variant="outline-success"
             >
               <Link
-                style={{ color: "black", fontWeight: "bold" }}
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textDecoration: "none"
+                }}
                 to="/offers/search"
               >
                 Offers
@@ -61,7 +73,14 @@ const Navbar = props => {
               style={{ borderRadius: "1rem", border: "2px solid" }}
               variant="outline-success"
             >
-              <Link style={{ color: "black", fontWeight: "bold" }} to="/login">
+              <Link
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textDecoration: "none"
+                }}
+                to="/login"
+              >
                 Login
               </Link>
             </Button>

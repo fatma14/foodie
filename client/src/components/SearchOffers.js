@@ -11,6 +11,7 @@ export default class SearchOffers extends Component {
     return (
       <div className="search-offers">
         <div className="offers-list">{matchingOffers}</div>
+        <span>You are few minutes away from a delicious meal</span>
         <Map
           offers={this.props.offers}
           setBounds={bounds => {

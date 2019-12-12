@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getOfferDetails, createOrder } from "./services/offers";
-import { Card, Carousel, Alert } from "react-bootstrap";
+import { Card, Carousel, Alert, Button } from "react-bootstrap";
 import "./OfferDetails.css";
 export default class OfferDetails extends Component {
   state = {
@@ -66,8 +66,19 @@ export default class OfferDetails extends Component {
           {this.state.files && <Carousel>{carousel}</Carousel>}
         </div>
         <div className="reservation-form">
-          <Card className="text-center">
-            <Card.Header>{this.state.name}</Card.Header>
+          <Card
+            style={{
+              width: "30rem",
+              fontSize: "20px",
+              borderColor: "#28a745",
+              borderWidth: "2px",
+              borderRadius: "1rem"
+            }}
+            className="text-center"
+          >
+            <Card.Header style={{ fontWeight: "bold" }}>
+              {this.state.name}
+            </Card.Header>
             <Card.Body>
               <Card.Text>{this.state.description}</Card.Text>
               <Card.Text>Quantity: {this.state.quantity}</Card.Text>
@@ -77,27 +88,29 @@ export default class OfferDetails extends Component {
                   return order.user === this.props.user._id;
                 }) ? (
                   <Alert variant="warning">
-                    Sorry you already made a reservation!
+                    You already made a reservation!
                   </Alert>
                 ) : (
-                  <button
+                  <Button
+                    style={{ borderRadius: "1rem", border: "2px solid" }}
+                    variant="outline-success"
                     className="reservation-button"
-                    variant="primary"
                     onClick={() => this.createOrder()}
                   >
                     Make a reservation
-                  </button>
+                  </Button>
                 )
               ) : (
-                <button
+                <Button
+                  style={{ borderRadius: "1rem", border: "2px solid" }}
+                  variant="outline-success"
                   className="reservation-button"
-                  variant="primary"
                   onClick={() => {
                     this.redirectToLogin();
                   }}
                 >
                   Login in order to make reservation
-                </button>
+                </Button>
               )}
             </Card.Body>
             <Card.Footer className="text-muted">
