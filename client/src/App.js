@@ -8,6 +8,7 @@ import SearchOffers from "./components/SearchOffers";
 import Home from "./components/Home";
 import { searchOffers } from "./components/services/offers";
 import Navbar from "./components/Navbar";
+import About from "./components/About";
 
 export default class App extends Component {
   state = {
@@ -96,6 +97,7 @@ export default class App extends Component {
                 return <Login setUser={this.setUser} {...props} />;
               }}
             />
+            <Route exact path="/about" component={About} />
           </Switch>
         </div>
       </div>

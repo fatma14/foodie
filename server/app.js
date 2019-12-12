@@ -33,7 +33,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,5 +44,10 @@ app.use("/api", orderRouter);
 
 app.use((error, req, res, next) => {
   console.log(error);
+});
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
 });
 module.exports = app;

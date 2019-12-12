@@ -85,6 +85,23 @@ const Navbar = props => {
               </Link>
             </Button>
           </div>
+          <div className="mr-5 ml-5">
+            <Button
+              style={{ borderRadius: "1rem", border: "2px solid" }}
+              variant="outline-success"
+            >
+              <Link
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textDecoration: "none"
+                }}
+                to="/about"
+              >
+                About Us
+              </Link>
+            </Button>
+          </div>
         </React.Fragment>
       )}
     </Nav>
