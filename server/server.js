@@ -20,8 +20,8 @@ mongoose
   });
 
 server
-  .listen(process.env.PORT, () => {
-    console.log(`Listening on http://localhost:${process.env.PORT}`);
+  .listen(process.env.MONGODB_URI, () => {
+    console.log(`Listening on http://localhost:${process.env.MONGODB_URI}`);
   })
   .on("error", e => {
     console.log(1, e);
