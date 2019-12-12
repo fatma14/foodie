@@ -21,7 +21,12 @@ export default class Home extends Component {
               }}
             >
               <Card.Body>
-                <Card.Title style={{ fontSize: "30px", fontWeight: "bold" }}>
+                <Card.Title
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "bold"
+                  }}
+                >
                   HomeMade
                 </Card.Title>
                 <Card.Text>

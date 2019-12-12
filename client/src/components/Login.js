@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import qs from "qs";
 import { login } from "./services/auth";
-import { Alert, Form, Card } from "react-bootstrap";
+import { Alert, Form, Card, Button } from "react-bootstrap";
 import "./Login.css";
 
 export default class Login extends Component {
@@ -48,14 +48,20 @@ export default class Login extends Component {
           <div>
             <Card
               bg="light"
-              style={{ width: "30rem", height: "30rem", fontSize: "20px" }}
+              style={{
+                width: "30rem",
+                height: "25rem",
+                fontSize: "20px",
+                borderRadius: "1rem"
+              }}
             >
-              <Card.Header>Login</Card.Header>
+              <Card.Header style={{ fontWeight: "bold" }}>Login</Card.Header>
               <Card.Body>
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group>
                     <Form.Label htmlFor="username">Username </Form.Label>
                     <Form.Control
+                      style={{ borderRadius: "1rem" }}
                       type="text"
                       name="username"
                       id="username"
@@ -66,6 +72,7 @@ export default class Login extends Component {
                   <Form.Group>
                     <Form.Label htmlFor="password">Password </Form.Label>
                     <Form.Control
+                      style={{ borderRadius: "1rem" }}
                       type="password"
                       name="password"
                       id="password"
@@ -76,9 +83,14 @@ export default class Login extends Component {
                   {this.state.error && (
                     <Alert variant="danger">{this.state.error}</Alert>
                   )}
-                  <button className="login-button" type="submit">
+                  <Button
+                    style={{ borderRadius: "1rem", border: "2px solid" }}
+                    variant="outline-success"
+                    className="login-button"
+                    type="submit"
+                  >
                     Log in
-                  </button>
+                  </Button>
                 </Form>
               </Card.Body>
             </Card>

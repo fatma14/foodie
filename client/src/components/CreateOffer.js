@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createOffer, handleUpload } from "./services/offers";
-import { Form, Card } from "react-bootstrap";
+import { Form, Card, Button } from "react-bootstrap";
 import Map from "./Map";
 import "./CreateOffer.css";
 
@@ -71,14 +71,23 @@ export default class Offer extends Component {
           <Card
             className="ml-3"
             bg="light"
-            style={{ width: "30rem", fontSize: "20px" }}
+            style={{
+              width: "30rem",
+              fontSize: "20px",
+              borderColor: "#28a745",
+              borderWidth: "2px",
+              borderRadius: "1rem"
+            }}
           >
-            <Card.Header>Create offer</Card.Header>
+            <Card.Header style={{ fontWeight: "bold" }}>
+              Create offer
+            </Card.Header>
             <Card.Body>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                   <Form.Label htmlFor="name">Name: </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="text"
                     name="name"
                     id="name"
@@ -90,9 +99,11 @@ export default class Offer extends Component {
                 <Form.Group>
                   <Form.Label htmlFor="price">Price: </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="text"
                     name="price"
                     id="price"
+                    placeholder="0€"
                     value={this.state.price}
                     onChange={this.handleChange}
                   />
@@ -101,6 +112,7 @@ export default class Offer extends Component {
                 <Form.Group>
                   <Form.Label htmlFor="quantity">Quantity: </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="text"
                     name="quantity"
                     id="quantity"
@@ -112,6 +124,7 @@ export default class Offer extends Component {
                 <Form.Group>
                   <Form.Label htmlFor="description">Description: </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="text"
                     name="description"
                     id="description"
@@ -123,6 +136,7 @@ export default class Offer extends Component {
                 <Form.Group>
                   <Form.Label htmlFor="description">Tagline: </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="text"
                     name="tagline"
                     id="tagline"
@@ -132,8 +146,9 @@ export default class Offer extends Component {
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label htmlFor="file">upload file </Form.Label>
+                  <Form.Label htmlFor="file">Upload pictures: </Form.Label>
                   <Form.Control
+                    style={{ borderRadius: "1rem" }}
                     type="file"
                     name="urlPath"
                     id="urlPath"
@@ -141,13 +156,15 @@ export default class Offer extends Component {
                     onChange={this.onImageUpload}
                   />
                 </Form.Group>
-                <button
+                <Button
+                  style={{ borderRadius: "1rem", border: "2px solid" }}
+                  variant="outline-success"
                   className="create-offer-button"
                   type="submit"
                   disabled={this.state.isLoading}
                 >
                   Create
-                </button>
+                </Button>
               </Form>
             </Card.Body>
           </Card>
