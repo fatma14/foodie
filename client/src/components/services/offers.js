@@ -71,10 +71,16 @@ const handleUpload = theFile => {
 const createOrder = (offerId, userId) => {
   return axios.post("/api/orders", { offerId, userId });
 };
+
+const deleteOrder = (orderId, userId) => {
+  return axios.delete(`/api/orders/${orderId}`);
+};
 export {
   searchOffers,
   createOffer,
   getOfferDetails,
   handleUpload,
-  createOrder
+  createOrder,
+  deleteOrder,
+  deleteOffer
 };

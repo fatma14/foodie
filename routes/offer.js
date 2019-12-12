@@ -6,9 +6,9 @@ const Offer = require("../models/Offer");
 const Order = require("../models/Order");
 const isAuthenticated = require("../middlewares/authorizations");
 
-router.post("/offers", (req, res, next) => {
+router.post("/offers", isAuthenticated, (req, res, next) => {
   userService
-    .createOffer(req.body)
+    .createOffer(req.body, req.user)
     .then(newOffer => {
       res.json(newOffer);
     })
@@ -47,7 +47,9 @@ router.get("/offers/:id", (req, res) => {
   }
 
   Offer.findById(req.params.id)
+    .populate("User")
     .then(offerDetails => {
+      console.warn("$$$$$$$$$$$$$$$$$", offerDetails);
       return Order.find({ offer: offerDetails._id }).then(orders => {
         res.json({ offerDetails, orders });
       });

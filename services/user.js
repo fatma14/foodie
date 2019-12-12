@@ -18,16 +18,10 @@ function signup(username, password, address) {
   });
 }
 
-function createOffer({
-  name,
-  description,
-  price,
-  quantity,
-  coordinates,
-  tagline,
-  imageUrls,
-  userId
-}) {
+function createOffer(
+  { name, description, price, quantity, coordinates, tagline, imageUrls },
+  user
+) {
   return Offer.create({
     name,
     description,
@@ -36,7 +30,7 @@ function createOffer({
     coordinates,
     tagline,
     imageUrls,
-    provider: userId
+    provider: user._id
   });
 }
 

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { getOfferDetails, createOrder } from "./services/offers";
+import {
+  getOfferDetails,
+  createOrder,
+  deleteOrder,
+  deleteOffer
+} from "./services/offers";
 import { Card, Carousel, Alert, Button } from "react-bootstrap";
 import "./OfferDetails.css";
 export default class OfferDetails extends Component {
@@ -9,6 +14,7 @@ export default class OfferDetails extends Component {
     quantity: "",
     price: "",
     tagline: "",
+    provider: undefined,
     orders: [],
     files: undefined
   };
@@ -23,6 +29,7 @@ export default class OfferDetails extends Component {
         price: data.offerDetails.price,
         tagline: data.offerDetails.tagline,
         files: data.offerDetails.imageUrls,
+        provider: data.offerDetails.provider,
         orders: data.orders
       });
     });
@@ -31,7 +38,20 @@ export default class OfferDetails extends Component {
   createOrder = () => {
     const offerId = this.props.match.params.id;
     const userId = this.props.user._id;
-    createOrder(offerId, userId);
+    createOrder(offerId, userId).then(response => {
+      this.getData();
+    });
+  };
+
+  cancelReservation = () => {
+    const offerId = this.props.match.params.id;
+    const userId = this.props.user._id;
+    const order = this.state.orders.find(order => {
+      return order.user === userId && order.offer === offerId;
+    });
+    deleteOrder(order._id).then(() => {
+      this.getData();
+    });
   };
 
   redirectToLogin = () => {
@@ -39,6 +59,12 @@ export default class OfferDetails extends Component {
     this.props.history.push(
       `/login?redirectTo=${encodeURIComponent(currenturl)}`
     );
+  };
+
+  deleteOffer = () => {
+    deleteOffer(this.props.match.params.id).then(() => {
+      this.props.history.push("/offer/create");
+    });
   };
 
   componentDidMount() {
@@ -60,6 +86,12 @@ export default class OfferDetails extends Component {
         );
       });
     }
+    const user = this.props.user;
+    const isUserCreatedTheCurrentOffer = this.state.provider === user._id;
+    const userHasOrdered = this.state.orders.find(
+      order => order.user === user._id
+    );
+    console.warn(isUserCreatedTheCurrentOffer, userHasOrdered);
     return (
       <div className="offer-details-container">
         <div className="carousel-items">
@@ -84,12 +116,24 @@ export default class OfferDetails extends Component {
               <Card.Text>Quantity: {this.state.quantity}</Card.Text>
               <Card.Text>Price: {this.state.price}</Card.Text>
               {this.props.user ? (
-                this.state.orders.find(order => {
-                  return order.user === this.props.user._id;
-                }) ? (
-                  <Alert variant="warning">
-                    You already made a reservation!
-                  </Alert>
+                isUserCreatedTheCurrentOffer ? (
+                  <Button
+                    style={{ borderRadius: "1rem", border: "2px solid" }}
+                    variant="outline-danger"
+                    className="reservation-button"
+                    onClick={() => this.deleteOffer()}
+                  >
+                    Delete offer
+                  </Button>
+                ) : userHasOrdered ? (
+                  <Button
+                    style={{ borderRadius: "1rem", border: "2px solid" }}
+                    variant="outline-danger"
+                    className="reservation-button"
+                    onClick={() => this.cancelReservation()}
+                  >
+                    Cancel reservation
+                  </Button>
                 ) : (
                   <Button
                     style={{ borderRadius: "1rem", border: "2px solid" }}

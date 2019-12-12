@@ -50,4 +50,24 @@ router.get("/orders", (req, res) => {
     });
 });
 
+router.delete("/orders/:orderId", (req, res) => {
+  const { orderId } = req.params;
+  if (!orderId) {
+    res.status(400).json({ error: "orderId is missing" });
+    return;
+  }
+  OrderModel.findByIdAndRemove(orderId)
+    .then(order => {
+      if (!order) {
+        res.status(404).json({ error: "order not found" });
+        return;
+      } else {
+        res.json();
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
+
 module.exports = router;

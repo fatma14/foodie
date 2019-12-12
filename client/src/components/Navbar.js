@@ -12,8 +12,12 @@ const Navbar = props => {
     <Nav className=" nav justify-content-end mt-2 ml-2 mr-2">
       {props.user ? (
         <>
-          <span style={{ color: "black", fontWeight: "bold" }} className="mr-5">
-            Hello {props.user.username}
+          <span
+            style={{ color: "black", fontWeight: "bold", fontSize: "17px" }}
+            className="mr-4"
+          >
+            Hey {props.user.username} you are just few minutes away from a
+            delicious meal
           </span>
           <Button
             style={{ borderRadius: "1rem", border: "2px solid" }}
