@@ -1,6 +1,7 @@
 import React from "react";
 import "./About.css";
 import { Card } from "react-bootstrap";
+
 const About = () => {
   return (
     <div>
@@ -23,12 +24,59 @@ const About = () => {
           </blockquote>
         </Card.Body>
       </Card>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="bottom" src="./images/order.jpg" />
-        <Card.Body>
-          <Card.Title>Pick it up</Card.Title>
-        </Card.Body>
-      </Card>
+      <div className="steps">
+        <Card
+          style={{
+            width: "18rem",
+            fontSize: "20px",
+            borderColor: "#28a745",
+            borderWidth: "2px",
+            borderRadius: "1rem"
+          }}
+        >
+          <Card.Img variant="bottom" src={require("../images/search.webp")} />
+          <Card.Body>
+            <Card.Title style={{ fontWeight: "bold" }}>
+              Find low-priced meal near you
+            </Card.Title>
+          </Card.Body>
+        </Card>
+        <Card
+          style={{
+            width: "18rem",
+            fontSize: "20px",
+            borderColor: "#28a745",
+            borderWidth: "2px",
+            borderRadius: "1rem"
+          }}
+        >
+          <Card.Img
+            variant="bottom"
+            src={require("../images/reservation.webp")}
+          />
+          <Card.Body>
+            <Card.Title style={{ fontWeight: "bold" }}>
+              Make a reservation within the app
+            </Card.Title>
+          </Card.Body>
+        </Card>
+        <Card
+          style={{
+            width: "18rem",
+            fontSize: "20px",
+            borderColor: "#28a745",
+            borderWidth: "2px",
+            borderRadius: "1rem"
+          }}
+        >
+          <Card.Img variant="bottom" src={require("../images/icon.webp")} />
+          <Card.Body>
+            <Card.Title style={{ fontWeight: "bold" }}>
+              Pick it up when you want
+            </Card.Title>
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   );
 };
