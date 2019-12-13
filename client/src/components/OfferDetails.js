@@ -78,7 +78,7 @@ export default class OfferDetails extends Component {
         return (
           <Carousel.Item>
             <img
-              className="carousel-image d-block w-100"
+              className="carousel-image d-block"
               src={imageUrl}
               alt="First slide"
             />
